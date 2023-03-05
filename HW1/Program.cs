@@ -8,15 +8,24 @@
 // 9 5 3 2
 // 8 4 4 2
 
-void FillArrayRandom(int[,] array)
+int ReadInt(string text)
 {
-    for (int i = 0; i < array.GetLength(0); i++)
+    System.Console.Write(text);
+    return Convert.ToInt32(Console.ReadLine());
+}
+
+int[,] GenerateMatrix(int m, int n)
+{
+    int[,] matrix = new int[m, n];
+    Random rand = new Random();
+    for (int i = 0; i < m; i++)
     {
-        for (int j = 0; j < array.GetLength(1); j++)
+        for (int j = 0; j < n; j++)
         {
-            array[i, j] = new Random().Next(1, 10);
+            matrix[i, j] = rand.Next(-10, 10);
         }
     }
+    return matrix;
 }
 
 void SortToLower(int[,] array)
@@ -50,9 +59,11 @@ void PrintArray(int[,] array)
     }
 }
 
-int[,] table = new int[3, 4];
-FillArrayRandom(table);
-PrintArray(table);
-SortToLower(table);
+int m = ReadInt("Введите количетсво строк матрицы: ");
+int n = ReadInt("Введите количество столбцов матрицы: ");
+int[,] myMatrix = GenerateMatrix(m,n);
+
+PrintArray(myMatrix);
+SortToLower(myMatrix);
 Console.WriteLine();
-PrintArray(table);
+PrintArray(myMatrix);
